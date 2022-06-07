@@ -1,2 +1,3 @@
 # note
-Shiro+ckeditor5
+Shiro
+ckeditor5
