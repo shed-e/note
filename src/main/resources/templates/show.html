@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<!--<html lang="en">-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title>随心记</title>
+    <!-- Preloader -->
+    <style>
+
+
+
+
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+
+        table{margin: auto;text-align: center;}
+        table tr{height: 60px}
+        .navpage_detail_2017{width: auto !important}
+        #yustb4
+        {
+            font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+            width:75%;
+            min-width: 1000px;
+            max-width: 1200px;
+            border-collapse:collapse;
+        }
+        #yustb4 td, #yustb4 th
+        {
+            font-size:1em;
+            height:50px;
+            padding:3px 7px 2px 7px;
+            border-bottom: 1px solid #c8c8c8;
+        }
+        #yustb4 th
+        {
+            font-size:1.1em;
+            text-align:left;
+            padding-top:5px;
+            height:50px;
+            padding-bottom:4px;
+            background-color:#b1b1b1;
+            color:#ffffff;
+        }
+
+
+    </style>
+
+    <style>
+        * {
+            box-sizing: border-box;  /*宽度和高度会包括内边距和边框*/
+        }
+
+        div.search {
+            padding: 10px 0;
+        }
+
+        form {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;  /*设置宽度后，居中*/
+        }
+
+        input,button {
+            border: none;   /*无边框样式；元素的总宽度和高度包括边框的宽度 */
+            outline: none;  /*无轮廓样式；轮廓是在元素周围绘制的一条线，在边框之外并且可能与其他内容重叠，以凸显元素，元素的总宽度和高度不受轮廓线宽度的影响。*/
+        }
+
+        .search input {
+            width: 100%;
+            height: 42px;
+            padding-left: 13px;
+            border: 2px solid #718096;
+            border-radius: 19px;   /*border-radius 属性用于向元素添加圆角边框：*/
+            background: transparent;  /*背景透明*/
+        }
+
+        .search button {
+            height: 42px;
+            width: 42px;
+            cursor: pointer;  /*cursor属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状*/
+            position: absolute;
+            background: #008aff;
+            border-radius: 0 19px 19px 0;
+            width: 60px;
+            right: 0;
+        }
+        .search button:hover {
+            background-color: #c7585c;  /*点击搜索按钮时的背景颜色*/
+        }
+
+        /* 在<button>元素后面插入内容，并设置所插入内容的样式： */
+        .search button:before {
+            content: "搜索";  /*插入的内容*/
+            font-size: 13px;  /*插入内容的字体大小*/
+            color: #F9F0DA;  /*插入内容的字体颜色*/
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="../static/assets/img/brand/favicon.png" th:href="@{/assets/img/brand/favicon.png}" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/assets/libs/fortawesome/fontawesome-free/css/all.min.css" th:href="@{/assets/libs/fortawesome/fontawesome-free/css/all.min.css}">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="../static/assets/css/quick-website.css"  th:href="@{/assets/css/quick-website.css}" id="stylesheet">
+</head>
+
+<body>
+<!-- Preloader -->
+<div class="preloader">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-cookies" data-backdrop="false" aria-labelledby="modal-cookies" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-aside left-4 right-4 bottom-4">
+        <div class="modal-content bg-dark-dark">
+            <div class="modal-body">
+                <!-- Text -->
+                <p class="text-sm text-white mb-3">
+                    We use cookies so that our themes work for you. By using our website, you agree to our use of cookies.
+                </p>
+                <!-- Buttons -->
+                <a href="pages/utility/terms.html" class="btn btn-sm btn-white" target="_blank">Learn more</a>
+                <button type="button" class="btn btn-sm btn-primary mr-2" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Go Pro -->
+<!--<a href="https://webpixels.io/themes/quick-website-ui-kit" class="btn btn-block btn-dark text-truncate rounded-0 py-2 d-none d-lg-block" style="z-index: 1000;" target="_blank">
+    <strong>This is a free demo.</strong> Click here to open the full version →
+</a>-->
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand" href="/note" onclick="goBack()">
+            <img alt="Image placeholder" src="../static/assets/img/brand/dark.svg" th:src="@{/assets/img/brand/dark.svg}" id="navbar-logo">
+        </a>
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="#" th:text="'欢迎，'+${session?.user}" th:if="${not #strings.isEmpty(session.user)}">未登录</a>
+                </li>
+                <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
+                    <!--<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>-->
+                    <div class="dropdown-menu dropdown-menu-single">
+                        <a href="index.html" class="dropdown-item">Homepage</a>
+                        <a href="about.html" class="dropdown-item">About us</a>
+                        <a href="contact.html" class="dropdown-item">Contact</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="login.html" class="dropdown-item">Login</a>
+                    </div>
+                </li>
+                <li class="nav-item ">
+                    <!--<a class="nav-link" href="docs/index.html">Docs</a>-->
+                    <div class="search">
+                        <form action="/note/select" method="post">
+                            <input placeholder="请输入标题" name="keyword" type="text">
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+
+                </li>
+            </ul>
+            <!-- Button -->
+            <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" href="/user/logout">
+                Logout
+            </a>
+            <!-- Mobile button -->
+            <div class="d-lg-none text-center">
+                <a href="https://webpixels.io/themes/quick-website-ui-kit" class="btn btn-block btn-sm btn-warning">See more details</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Main content -->
+
+<section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
+    <div class="container">
+        <!-- Title -->
+        <!-- Section title -->
+        <div class="row mb-5 justify-content-center text-center">
+            <div class="col-lg-6">
+                    <span class="badge badge-soft-success badge-pill badge-lg">
+                        <!--<a href="#" onclick="afterText()">+</a>-->
+
+                    </span>
+                <!--<h2 class=" mt-4">Carefuly crafted components ready to use in your project</h2>
+                <div class="mt-2">
+                    <p class="lead lh-180">Use Atomic Design to build components, sections and, then, pages.</p>
+                </div>-->
+            </div>
+        </div>
+        <!-- Card -->
+
+        <table id="yustb4">
+            <tbody>
+            <tr>
+                <th style="width: 20%;text-align: center;">保存时间</th>
+                <th style="width: 20%;text-align: center;">便签主题</th>
+                <th style="width: 20%;text-align: center;">内容简介</th>
+                <th style="width: 20%;text-align: center;">操作</th>
+            </tr>
+            <tr th:each="info:${infos.list}">
+                <td th:text="${info.sdate}"></td>
+                <td th:text="${info.title}"></td>
+                <td th:text="${info.information}"></td>
+                <td>
+                    <a th:href="@{/note/modify(nid=${info.nid})}" onclick="return confirm('确定要编辑该便签？')">编辑</a>
+                    <a th:href="@{/note/delete(nid=${info.nid})}" onclick="return confirm('确定要删除该便签？')">删除</a>
+                    <a th:href="@{/note/share(nid=${info.nid})}" onclick="return confirm('确定要导出PDF？')" >分享</a>
+                    </br>
+                    <a>
+                        <input type="hidden" id="now_time">
+                        <audio src="../static/assets/beep.mp3" th:src="@{/assets/beep.mp3}" preload="auto" id="music"></audio>
+                    </a>
+                    <a>
+                        <input type="number" value="23" min="0" max="23" size="1" id="shi">
+                        <input type="number" value="00" min="0" max="59" size="1" id="fen">
+                        <input type="number" value="00" min="0" max="59" size="1" id="miao">
+                        <input type="button" value="关闭提醒" id="gb" size="2" >
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div style="text-align:center;">
+            <a href="#" th:href="'/note/show?pageNum=1&pageSize=5'">首页</a>
+            <a href="#" th:href="'/note/show?pageNum='+${infos.prePage}+'&pageSize=5'">上一页</a>
+            <a href="#" th:href="'/note/show?pageNum='+${infos.nextPage}+'&pageSize=5'">下一页</a>
+            <a href="#" th:href="'/note/show?pageNum='+${infos.pages}+'&pageSize=5'">尾页</a>
+
+        </div>
+
+    </div>
+
+
+
+
+
+</section>
+
+
+<!-- Core JS  -->
+<script src="../static/assets/libs/jquery/dist/jquery.min.js" th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
+<script src="../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js" th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+<script src="../static/assets/libs/svg-injector/dist/svg-injector.min.js" th:src="@{/assets/libs/svg-injector/dist/svg-injector.min.js}"></script>
+<script src="../static/assets/libs/feather-icons/dist/feather.min.js" th:src="@{/assets/libs/feather-icons/dist/feather.min.js}" ></script>
+<!-- Quick JS -->
+<script src="../static/assets/js/quick-website.js" th:src="@{/assets/js/quick-website.js}"></script>
+<!-- Feather Icons -->
+
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ),{
+            language:'zh-cn',//需要引入语言文件
+            ckfinder: {
+                uploadUrl: '/upload'
+            }
+        })
+        .then( editor => {
+            window.editor = editor;
+        } )
+        .catch( error => {
+        } );
+</script>
+
+
+<!-- 富文本编辑器-->
+
+<script>
+    feather.replace({
+        'width': '1em',
+        'height': '1em'
+    })
+</script>
+
+<script th:inline="javascript">
+    function warn() {
+        let uname = [[${session.user}]];
+        //alert(uname);
+        if (null==uname){
+            alert("请先登录");
+        }
+
+    }
+
+
+</script>
+<!--登录提示弹窗-->
+
+<script>
+    function afterText() {
+        let txt = "<div class=\"col-md-4\">\n" +
+            "                    <div class=\"card\">\n" +
+            "                        <div class=\"card-body pb-5\">\n" +
+            "                            <form action=\"/note/save\" method=\"post\">\n" +
+            "                            <textarea name=\"content\">\n" +
+            "                                \n" +
+            "                            </textarea>\n" +
+            "                                <input type=\"hidden\" >\n" +
+            "                                <div class=\"card-body pb-5\">\n" +
+            "                                    <button type=\"submit\" class=\"btn btn-block btn-primary\" onclick=\"warn()\">立即保存</button>\n" +
+            "                                </div>\n" +
+            "                            </form>\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                </div>"; // 以 HTML 创建新元素
+        //var txt2=$("<i></i>").text("love"); // 通过 jQuery 创建新元素
+        //var txt3=document.createElement("big"); // 通过 DOM 创建新元素
+        //txt3.innerHTML="jQuery!";
+        /**$("#edd").on('click','a',function(){
+
+        });**/
+        $("#ed").after(txt); // 在 id=ed0 之后插入新元素
+
+    }
+</script>
+
+<script>
+    function setting() {
+        $('.txt').attr('id','editor');
+    }
+</script>
+
+<script>
+    function changePageSize() {
+        //获取下拉框的值
+        var pageSize = $("#changePageSize").val();
+
+        //向服务器发送请求，改变没页显示条数
+        location.href = "http://localhost:8080/note/show?page=1&size=" + pageSize;
+    }
+
+    $("#find").keydown(function (e) {
+        if (e.keyCode === 13) {
+            $("#sub").click();
+        }
+    });
+    $(document).ready(function () {
+        // 选择框
+        $(".select2").select2();
+
+        // WYSIHTML5编辑器
+        $(".textarea").wysihtml5({
+            locale: 'zh-CN'
+        });
+    });
+
+    // 设置激活菜单
+    function setSidebarActive(tagUri) {
+        var liObj = $("#" + tagUri);
+        if (liObj.length > 0) {
+            liObj.parent().parent().addClass("active");
+            liObj.addClass("active");
+        }
+    }
+
+    $(document).ready(function () {
+
+        // 激活导航位置
+        setSidebarActive("admin-datalist");
+
+        // 列表按钮
+        $("#dataList td input[type='checkbox']").iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            increaseArea: '20%'
+        });
+        // 全选操作
+        $("#selall").click(function () {
+            var clicks = $(this).is(':checked');
+            if (!clicks) {
+                $("#dataList td input[type='checkbox']").iCheck("uncheck");
+            } else {
+                $("#dataList td input[type='checkbox']").iCheck("check");
+            }
+            $(this).data("clicks", !clicks);
+        });
+    });
+</script>
+
+<script>
+    function goBack(){
+        window.history.back(-1);
+    }
+</script>
+
+<script>
+    window.onload=function(){
+        //获取标签
+        shi=document.getElementById("shi").value,
+            fen=document.getElementById("fen").value,
+            miao=document.getElementById("miao").value;
+
+        let input = document.getElementsByTagName("input");
+        let music = document.getElementById("music");
+        let gb = document.getElementById("gb");
+
+        for(i=0;i<input.length;i++){
+            /*
+            oninput 事件在用户输入时触发。该事件在 <input> 或 <textarea> 元素的值发生改变时触发。
+            提示：
+            该事件类似于 onchange 事件。不同之处在于 oninput 事件在元素值发生变化时立即触发,onchange在元素失去焦点时触发。
+            另外一点不同是onchange事件也可以作用于<keygen>和<select>元素。
+            */
+            input[i].oninput=function(){
+                shi=document.getElementById("shi").value,
+                    fen=document.getElementById("fen").value,
+                    miao=document.getElementById("miao").value;
+            }
+        }
+
+        function showtime() {
+            let time = new Date();
+            let hour = time.getHours();
+            let mine = time.getMinutes();
+            let sec = time.getSeconds();
+            let now_time = document.getElementById("now_time");
+            now_time.innerHTML = add0(hour) + ":" + add0(mine) + ":" + add0(sec);
+
+            let d1 = hour >= shi && mine >= fen && sec >= miao;
+            let d2 = hour >= shi && mine >= fen;
+            let d3 = hour >= shi;
+            if(d1&&d2&&d3){
+                music.play();//响铃
+                //confirm("您设置的提醒已生效");
+                now_time.style.color='red';//改变字体颜色为红色
+            }
+            else{
+                music.pause();
+                now_time.style.color='black';
+            }//同理
+        }
+        showtime();
+        function add0(m){
+            if(m<10){return "0"+m}
+            else{return m}
+        }
+
+        let timer = setInterval(showtime, 1000);
+
+        gb.onclick=function(){
+            shi=24;
+        }
+    }
+</script>
+
+</body>
+
+</html>
